@@ -421,7 +421,7 @@ CastPlayer.prototype.setupRemotePlayer = function () {
     playerTarget.load = function (mediaIndex) {
         console.log('Loading...' + this.mediaContents[mediaIndex]['title']);
         var mediaInfo = new chrome.cast.media.MediaInfo(
-            this.mediaContents[mediaIndex]['sources'][0], mediaIndex === 0 ? "audio/mpeg" : 'video/mp4');
+            this.mediaContents[mediaIndex]['sources'][0], 'video/mp4');
 
         mediaInfo.metadata = new chrome.cast.media.GenericMediaMetadata();
         mediaInfo.metadata.metadataType = chrome.cast.media.MetadataType.GENERIC;
@@ -930,12 +930,6 @@ CastPlayer.getErrorMessage = function(error) {
  */
 var mediaJSON = { 'categories' : [{ 'name' : 'Movies',
     'videos' : [
-        { 'description' : "Testing playback of GPM<",
-            'sources' : ['http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'],
-            'subtitle' : 'GPM playing',
-            'thumb' : 'images/gpm.jpg',
-            'title' : 'Test GPM Playback'
-        },
         { 'description' : "Big Buck Bunny tells the story of a giant rabbit with a heart bigger than himself. When one sunny day three rodents rudely harass him, something snaps... and the rabbit ain't no bunny anymore! In the typical cartoon tradition he prepares the nasty rodents a comical revenge.\n\nLicensed under the Creative Commons Attribution license\nhttp://www.bigbuckbunny.org",
             'sources' : ['http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'],
             'subtitle' : 'By Blender Foundation',
@@ -1015,13 +1009,3 @@ var mediaJSON = { 'categories' : [{ 'name' : 'Movies',
             'title' : 'What care can you get for a grand?'
         }
     ]}]};
-
-
-function modifyTestUrl(url) {
-    mediaJSON["videos"][0]["sources"] = [url]
-}
-
-document.getElementById("stream_url").addEventListener("change", (e) => {
-    console.log("Modifying to " + e.target.value)
-    modifyTestUrl(e.target.value)
-})
