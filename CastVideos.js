@@ -1018,7 +1018,7 @@ var mediaJSON = { 'categories' : [{ 'name' : 'Movies',
 
 
 function modifyTestUrl(url) {
-    mediaJSON["videos"][0]["sources"] = [url]
+    mediaJSON["categories"][0]["videos"][0]["sources"] = [url]
 }
 
 document.getElementById("stream_url").addEventListener("change", (e) => {
